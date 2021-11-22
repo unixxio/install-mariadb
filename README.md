@@ -1,4 +1,5 @@
 # Install MariaDB
+**Last Update**: November 22, 2021
 
 This installer should work on any Debian based OS. This also includes Ubuntu. If it detects MariaDB or MySQL is already running on port 3306 it will abort the installation.
 

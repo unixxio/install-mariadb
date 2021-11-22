@@ -114,4 +114,4 @@ chown -R username: /home/username/.my.cnf
 Feel free to [buy me a beer](https://paypal.me/sonnymeijer)! ;-)
 
 ## DISCLAIMER
-Use at your own risk and always make sure you have backups! Make sure you check your IP-address is added to the whitelist because SSH (port 22) is only accessible from allowed (whitelisted) IP's.
+Use at your own risk and always make sure you have backups!

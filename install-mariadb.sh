@@ -33,6 +33,12 @@ echo -e "Version      : ${version}"
 echo -e "Kernel       : ${kernel}"
 echo -e "Uptime       : ${uptime}"
 
+# Check if MariaDB or MySQL is already installed
+if [[ $(lsof -i TCP:3306) ]]; then
+    echo -e "\n[ Error ] MariaDB or MySQL is already running on port 3306.\n"
+    exit 1
+fi
+
 # Script feedback
 echo -e "\nInstalling required packages and MariaDB. Please wait...\n"
 

@@ -91,8 +91,8 @@ Create MariaDB (MySQL) user
 CREATE USER 'username'@'localhost' IDENTIFIED BY 'mypassword';
 CREATE USER 'username'@'127.0.0.1' IDENTIFIED BY 'mypassword';
 
-GRANT ALL PRIVILEGES ON 'example_db01'.* TO 'username'@'localhost';
-GRANT ALL PRIVILEGES ON 'example_db01'.* TO 'username'@'127.0.0.1';
+GRANT ALL PRIVILEGES ON example_db01.* TO 'username'@'localhost';
+GRANT ALL PRIVILEGES ON example_db01.* TO 'username'@'127.0.0.1';
 
 FLUSH privileges;
 ```

@@ -70,7 +70,7 @@ EOF
 # Create root @ 127.0.0.1 user
 if [ -f /root/.my.cnf ]; then
     mysql -e "CREATE USER 'root'@'127.0.0.1';"
-    mysql -e "GRANT ALL PRIVILEGES ON *.* TO `root`@`localhost` IDENTIFIED VIA mysql_native_password USING PASSWORD("${root_password}") OR unix_socket WITH GRANT OPTION;"
+    mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'127.0.0.1' IDENTIFIED VIA mysql_native_password USING PASSWORD('${root_password}') OR unix_socket WITH GRANT OPTION;"
     mysql -e "GRANT PROXY ON ''@'%' TO 'root'@'127.0.0.1' WITH GRANT OPTION;"
     mysql -e "FLUSH PRIVILEGES;"
 fi

@@ -30,7 +30,7 @@ These questions will popup during installation. For best practice use the answer
 Enter current password for root (enter for none): ENTER
 OK, successfully used password, moving on...
 
-Switch to unix_socket authentication [Y/n] Y
+Switch to unix_socket authentication [Y/n] N
 
 Change the root password? [Y/n] Y
 

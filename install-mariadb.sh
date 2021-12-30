@@ -46,7 +46,7 @@ echo -e "\nInstalling required packages and MariaDB. Please wait...\n"
 apt-get update > /dev/null 2>&1 && apt-get upgrade -y > /dev/null 2>&1
 
 # Install MariaDB
-apt-get install mariadb-server mariadb-client -y > /dev/null 2>&1
+apt-get install ${packages} mariadb-server mariadb-client -y > /dev/null 2>&1
 
 # Start and enable services
 systemctl start mariadb > /dev/null 2>&1

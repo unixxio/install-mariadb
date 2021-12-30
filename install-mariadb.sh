@@ -60,6 +60,13 @@ echo -e "\nPlease enter the root password for MariaDB"
 echo -e -n "Password : "
 read root_password
 
+# Create file with credentials
+tee /root/.my.cnf <<EOF > /dev/null 2>&1
+[client]
+user = root
+password = ${root_password}
+EOF
+
 # Create root @ 127.0.0.1 user
 if [ -f /root/.my.cnf ]; then
     mysql -e "CREATE USER 'root'@'127.0.0.1';"
@@ -67,13 +74,6 @@ if [ -f /root/.my.cnf ]; then
     mysql -e "GRANT PROXY ON ''@'%' TO 'root'@'127.0.0.1' WITH GRANT OPTION;"
     mysql -e "FLUSH PRIVILEGES;"
 fi
-
-# Create file with credentials
-tee /root/.my.cnf <<EOF > /dev/null 2>&1
-[client]
-user = root
-password = ${root_password}
-EOF
 
 # End script
 echo -e "\nMariaDB is now successfully installed. Enjoy! ;-)\n"

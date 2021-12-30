@@ -58,22 +58,25 @@ mysql_secure_installation
 # Create file with credentials
 echo -e "\nPlease enter the root password for MariaDB"
 echo -e -n "Password : "
-read root_password
+read sql_root_password
+
+# Verify credentials
+while ! mysql -u root -p${sql_root_password} -e ";" ; do
+       read -s -p "Wrong password, please enter the root password for MariaDB: " sql_root_password
+done
 
 # Create file with credentials
 tee /root/.my.cnf <<EOF > /dev/null 2>&1
 [client]
 user = root
-password = ${root_password}
+password = ${sql_root_password}
 EOF
 
 # Create root @ 127.0.0.1 user
-if [ -f /root/.my.cnf ]; then
-    mysql -e "CREATE USER 'root'@'127.0.0.1';"
-    mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'127.0.0.1' IDENTIFIED VIA mysql_native_password USING PASSWORD('${root_password}') OR unix_socket WITH GRANT OPTION;"
-    mysql -e "GRANT PROXY ON ''@'%' TO 'root'@'127.0.0.1' WITH GRANT OPTION;"
-    mysql -e "FLUSH PRIVILEGES;"
-fi
+mysql -e "CREATE USER 'root'@'127.0.0.1';"
+mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'127.0.0.1' IDENTIFIED VIA mysql_native_password USING PASSWORD('${sql_root_password}') OR unix_socket WITH GRANT OPTION;"
+mysql -e "GRANT PROXY ON ''@'%' TO 'root'@'127.0.0.1' WITH GRANT OPTION;"
+mysql -e "FLUSH PRIVILEGES;"
 
 # End script
 echo -e "\nMariaDB is now successfully installed. Enjoy! ;-)\n"
